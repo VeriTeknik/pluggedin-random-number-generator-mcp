@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A state-of-the-art cryptographically secure random number generator MCP server",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "bin": {
     "pluggedin-random-number-generator-mcp": "dist/index.js"
   },

@@ -1,4 +1,5 @@
-runtime: "typescript"
+runtime: "docker"
+dockerfile: "Dockerfile.smithery"
 
 # Smithery deployment configuration for Plugged.in Random Number Generator MCP Server
 # This server provides cryptographically secure random number generation via MCP

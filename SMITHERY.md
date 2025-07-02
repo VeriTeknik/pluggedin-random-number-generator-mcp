@@ -46,13 +46,19 @@ This guide explains how to deploy the Plugged.in Random Number Generator MCP Ser
 The `smithery.yaml` file contains:
 
 ```yaml
-runtime: "typescript"
+runtime: "docker"
+dockerfile: "Dockerfile.smithery"
 
 metadata:
   name: "pluggedin-random-number-generator"
   description: "Cryptographically secure random number generator MCP server"
   # ... additional metadata
 ```
+
+The project uses a custom Dockerfile (`Dockerfile.smithery`) that:
+- Builds the TypeScript project
+- Creates a minimal runtime image
+- Runs the compiled JavaScript directly
 
 ## Supported Features
 

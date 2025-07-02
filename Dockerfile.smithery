@@ -1,0 +1,49 @@
+# Dockerfile optimized for Smithery deployment
+# Multi-stage build to compile TypeScript and create minimal runtime
+
+# Stage 1: Build stage
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+COPY tsconfig.json ./
+
+# Install all dependencies (including dev) without running scripts
+RUN npm ci --ignore-scripts
+
+# Copy source code
+COPY src ./src
+
+# Build TypeScript to JavaScript
+RUN npm run build
+
+# Stage 2: Runtime stage - minimal image
+FROM node:20-alpine
+
+# Install dumb-init for proper signal handling
+RUN apk add --no-cache dumb-init
+
+# Create app user
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nodejs -u 1001
+
+WORKDIR /app
+
+# Copy only production dependencies
+COPY package*.json ./
+RUN npm ci --production --ignore-scripts && \
+    npm cache clean --force
+
+# Copy compiled JavaScript from builder
+COPY --from=builder --chown=nodejs:nodejs /app/dist ./dist
+
+# Switch to non-root user
+USER nodejs
+
+# Use dumb-init to handle signals
+ENTRYPOINT ["dumb-init", "--"]
+
+# Run the compiled JavaScript directly
+CMD ["node", "dist/index.js"]
