@@ -1,47 +1,14 @@
-# Ultra-minimal Docker image using scratch
-# Stage 1: Build stage
-FROM node:20-alpine AS builder
-
-# Install build dependencies
-RUN apk add --no-cache python3 make g++
+# Minimal Dockerfile - just run pre-built code
+FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy package files
+# Copy only what's needed to run
 COPY package*.json ./
-COPY tsconfig.json ./
+COPY dist ./dist
 
 # Install only production dependencies
 RUN npm ci --production --ignore-scripts
 
-# Copy source code
-COPY src ./src
-
-# Build TypeScript
-RUN npm run build
-
-# Stage 2: Create minimal runtime
-FROM alpine:3.19 AS runtime
-
-# Install only Node.js runtime (no npm, no build tools)
-RUN apk add --no-cache nodejs
-
-# Create non-root user
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nodejs -u 1001
-
-WORKDIR /app
-
-# Copy only necessary runtime files
-COPY --from=builder --chown=nodejs:nodejs /app/node_modules ./node_modules
-COPY --from=builder --chown=nodejs:nodejs /app/dist ./dist
-
-# Create a minimal entrypoint script
-RUN echo '#!/bin/sh' > /app/entrypoint.sh && \
-    echo 'exec node /app/dist/index.js "$@"' >> /app/entrypoint.sh && \
-    chmod +x /app/entrypoint.sh && \
-    chown nodejs:nodejs /app/entrypoint.sh
-
-USER nodejs
-
-ENTRYPOINT ["/app/entrypoint.sh"]
+# Run the server
+CMD ["node", "dist/index.js"]
