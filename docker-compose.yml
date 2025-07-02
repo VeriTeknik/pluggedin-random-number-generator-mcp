@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  # Test the MCP server with a simple request
+  mcp-test:
+    image: pluggedin-random-number-generator-mcp:alpine
+    stdin_open: true
+    tty: true
+    command: |
+      sh -c 'echo "{\"jsonrpc\":\"2.0\",\"method\":\"tools/list\",\"id\":1}" | node dist/index.js'
+    
+  # Run the test suite
+  test-suite:
+    image: pluggedin-random-number-generator-mcp:alpine
+    volumes:
+      - ./test.js:/app/test.js:ro
+    command: node test.js
+    
+  # Interactive MCP server
+  mcp-interactive:
+    image: pluggedin-random-number-generator-mcp:alpine
+    stdin_open: true
+    tty: true
+    command: node dist/index.js

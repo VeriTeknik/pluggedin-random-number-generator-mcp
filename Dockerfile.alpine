@@ -1,0 +1,49 @@
+# Ultra-light Alpine-based Docker image
+# Stage 1: Build stage
+FROM node:20-alpine AS builder
+
+# Install build dependencies
+RUN apk add --no-cache python3 make g++
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+COPY tsconfig.json ./
+
+# Install dependencies without running scripts
+RUN npm ci --ignore-scripts
+
+# Copy source code
+COPY src ./src
+
+# Build TypeScript
+RUN npm run build
+
+# Remove dev dependencies and clean npm cache
+RUN npm prune --production && \
+    npm cache clean --force
+
+# Stage 2: Runtime stage
+FROM node:20-alpine
+
+# Install dumb-init for proper signal handling
+RUN apk add --no-cache dumb-init
+
+# Create non-root user
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nodejs -u 1001
+
+WORKDIR /app
+
+# Copy only necessary files
+COPY --from=builder --chown=nodejs:nodejs /app/node_modules ./node_modules
+COPY --from=builder --chown=nodejs:nodejs /app/dist ./dist
+COPY --from=builder --chown=nodejs:nodejs /app/package.json ./
+
+# Switch to non-root user
+USER nodejs
+
+# Use dumb-init to handle signals properly
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["node", "dist/index.js"]

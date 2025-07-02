@@ -10,10 +10,15 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node test.js",
     "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run build",
     "build:dxt": "node scripts/build-dxt.js",
-    "inspector": "npx @modelcontextprotocol/inspector dist/index.js"
+    "inspector": "npx @modelcontextprotocol/inspector dist/index.js",
+    "docker:build": "docker build -t pluggedin-random-number-generator-mcp:latest .",
+    "docker:build:alpine": "docker build -f Dockerfile.alpine -t pluggedin-random-number-generator-mcp:alpine .",
+    "docker:run": "docker run --rm -i pluggedin-random-number-generator-mcp:latest",
+    "docker:test": "docker run --rm pluggedin-random-number-generator-mcp:latest node test.js"
   },
   "keywords": [
     "mcp",

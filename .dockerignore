@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build output (we'll build in Docker)
+dist/
+
+# Development files
+.git/
+.gitignore
+.dockerignore
+*.md
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+
+# Test files
+test.js
+coverage/
+
+# DXT files
+dxt/
+*.dxt
+
+# Scripts
+scripts/
+
+# Environment files
+.env
+.env.*
+
+# Docker files
+Dockerfile*
+docker-compose.yml
+
+# CI/CD
+.github/
+
+# Temporary files
+tmp/
+temp/
