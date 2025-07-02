@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "random-number-generator": {
+      "command": "node",
+      "args": ["dist/index.js"],
+      "env": {}
+    }
+  }
+}

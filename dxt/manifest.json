@@ -1,0 +1,76 @@
+{
+  "dxt_version": "1.0.0",
+  "name": "pluggedin-random-number-generator",
+  "version": "1.0.0",
+  "display_name": "Plugged.in Random Number Generator",
+  "description": "A cryptographically secure random number generator MCP server",
+  "long_description": "The Plugged.in Random Number Generator MCP server provides state-of-the-art cryptographically secure random number generation for AI applications. It offers 7 specialized tools for generating integers, floats, bytes, UUIDs, strings, choices, and booleans using Node.js's crypto module.",
+  "author": {
+    "name": "VeriTeknik",
+    "url": "https://github.com/VeriTeknik"
+  },
+  "server": {
+    "type": "node",
+    "entry_point": "server/dist/index.js",
+    "mcp_config": {
+      "transport": "stdio"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VeriTeknik/pluggedin-random-number-generator-mcp"
+  },
+  "homepage": "https://github.com/VeriTeknik/pluggedin-random-number-generator-mcp#readme",
+  "documentation": "https://github.com/VeriTeknik/pluggedin-random-number-generator-mcp#readme",
+  "support": "https://github.com/VeriTeknik/pluggedin-random-number-generator-mcp/issues",
+  "tools": [
+    {
+      "name": "generate_random_integer",
+      "description": "Generate a cryptographically secure random integer"
+    },
+    {
+      "name": "generate_random_float",
+      "description": "Generate a cryptographically secure random float"
+    },
+    {
+      "name": "generate_random_bytes",
+      "description": "Generate cryptographically secure random bytes"
+    },
+    {
+      "name": "generate_uuid",
+      "description": "Generate a cryptographically secure UUID v4"
+    },
+    {
+      "name": "generate_random_string",
+      "description": "Generate a cryptographically secure random string"
+    },
+    {
+      "name": "generate_random_choice",
+      "description": "Make a cryptographically secure random choice"
+    },
+    {
+      "name": "generate_random_boolean",
+      "description": "Generate a cryptographically secure random boolean"
+    }
+  ],
+  "prompts": [
+    {
+      "name": "generate_random",
+      "description": "Help me generate random values using cryptographically secure methods"
+    }
+  ],
+  "keywords": [
+    "random",
+    "cryptography",
+    "rng",
+    "csprng",
+    "security",
+    "mcp",
+    "ai"
+  ],
+  "license": "MIT",
+  "compatibility": {
+    "dxt_min_version": "1.0.0",
+    "node_min_version": "18.0.0"
+  }
+}

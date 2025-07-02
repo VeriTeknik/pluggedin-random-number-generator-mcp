@@ -7,8 +7,7 @@ A state-of-the-art cryptographically secure random number generator server imple
 - **Cryptographically Secure**: Uses Node.js built-in `crypto` module for cryptographically secure pseudorandom number generation (CSPRNG)
 - **Multiple Data Types**: Generate integers, floats, bytes, UUIDs, strings, booleans, and random choices
 - **Flexible Configuration**: Customizable ranges, counts, encodings, and character sets
-- **MCP Compliant**: Full compatibility with Model Context Protocol specification including tools and prompts
-- **AI-Friendly Prompts**: Built-in prompt to help LLMs understand they should use this server for random generation
+- **MCP Compliant**: Full compatibility with Model Context Protocol specification
 - **Type Safety**: Written in TypeScript with comprehensive type definitions
 - **Error Handling**: Robust input validation and error reporting
 - **Performance Optimized**: Efficient algorithms suitable for high-throughput applications
@@ -19,15 +18,6 @@ A state-of-the-art cryptographically secure random number generator server imple
 
 - Node.js 18.0.0 or higher
 - npm or yarn package manager
-
-### Install via Desktop Extension (DXT)
-
-For Claude Desktop users, you can install this server as a one-click Desktop Extension:
-
-1. Download the latest `.dxt` file from the [releases page](https://github.com/VeriTeknik/pluggedin-random-number-generator-mcp/releases)
-2. Open Claude Desktop
-3. Go to Settings → Developer → MCP Servers
-4. Click "Install from file" and select the downloaded `.dxt` file
 
 ### Install from npm (Coming Soon)
 
@@ -42,9 +32,6 @@ git clone https://github.com/VeriTeknik/pluggedin-random-number-generator-mcp.gi
 cd pluggedin-random-number-generator-mcp
 npm install
 npm run build
-
-# Optional: Build DXT package
-npm run build:dxt
 ```
 
 ## 🛠️ Usage
@@ -221,26 +208,6 @@ Generate cryptographically secure random boolean values with configurable probab
 }
 ```
 
-## 🤖 AI Prompts
-
-The server includes a built-in prompt to help LLMs understand they should use this server for random number generation rather than attempting to generate random values themselves.
-
-### Available Prompt: `generate_random`
-
-This prompt educates the AI about its limitations in generating random numbers and guides it to use the available cryptographically secure tools.
-
-**Parameters:**
-- `type` (string, optional): Type of random value needed (integer, float, uuid, string, bytes, choice, boolean)
-- `requirements` (string, optional): Specific requirements for the random generation
-
-**Example Usage:**
-When an LLM receives a request like "Generate a random password" or "Pick a random number", the prompt will:
-1. Acknowledge that LLMs cannot generate truly random values
-2. Explain the available cryptographically secure tools
-3. Guide the AI to use the appropriate tool for the task
-
-This ensures that all random generation in your application uses proper cryptographic methods rather than predictable AI-generated patterns.
-
 ## 🔒 Security Features
 
 This server implements several security best practices:
@@ -305,20 +272,6 @@ npm run build
 npm run dev
 ```
 
-### Testing with MCP Inspector
-
-You can test the server using the MCP Inspector tool:
-
-```bash
-npm run inspector
-```
-
-This will start the MCP Inspector web interface where you can:
-- View available tools
-- Test tool execution
-- Inspect request/response payloads
-- Debug server behavior
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
@@ -348,6 +301,4 @@ For support, questions, or feature requests:
 - Open an issue on [GitHub](https://github.com/VeriTeknik/pluggedin-random-number-generator-mcp/issues)
 - Visit the [Plugged.in platform](https://plugged.in/) for MCP server management
 - Check the [MCP documentation](https://modelcontextprotocol.io/docs) for protocol details
-
-
 
