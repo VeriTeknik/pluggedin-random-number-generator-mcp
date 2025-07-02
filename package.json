@@ -6,6 +6,13 @@
   "bin": {
     "pluggedin-random-number-generator-mcp": "dist/index.js"
   },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "SECURITY.md"
+  ],
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
@@ -18,7 +25,14 @@
     "docker:build": "docker build -t pluggedin-random-number-generator-mcp:latest .",
     "docker:build:alpine": "docker build -f Dockerfile.alpine -t pluggedin-random-number-generator-mcp:alpine .",
     "docker:run": "docker run --rm -i pluggedin-random-number-generator-mcp:latest",
-    "docker:test": "docker run --rm pluggedin-random-number-generator-mcp:latest node test.js"
+    "docker:test": "docker run --rm pluggedin-random-number-generator-mcp:latest node test.js",
+    "version:patch": "npm version patch",
+    "version:minor": "npm version minor",
+    "version:major": "npm version major",
+    "publish:npm": "npm publish --access public",
+    "release:patch": "npm run version:patch && npm run publish:npm && git push --follow-tags",
+    "release:minor": "npm run version:minor && npm run publish:npm && git push --follow-tags",
+    "release:major": "npm run version:major && npm run publish:npm && git push --follow-tags"
   },
   "keywords": [
     "mcp",
@@ -34,7 +48,9 @@
   "author": "VeriTeknik",
   "license": "MIT",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
     "@types/node": "^22.0.0",
     "ts-node": "^10.9.0",
     "typescript": "^5.0.0"

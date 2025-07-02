@@ -4,7 +4,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "pluggedin-random-number-generator-mcp"
+        "pluggedin-random-number-generator-mcp@latest"
       ]
     }
   }

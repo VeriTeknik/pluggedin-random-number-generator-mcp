@@ -29,10 +29,16 @@ For Claude Desktop users, you can install this server as a one-click Desktop Ext
 3. Go to Settings → Developer → MCP Servers
 4. Click "Install from file" and select the downloaded `.dxt` file
 
-### Install from npm (Coming Soon)
+### Install from npm
 
 ```bash
 npm install -g pluggedin-random-number-generator-mcp
+```
+
+Or install locally in your project:
+
+```bash
+npm install pluggedin-random-number-generator-mcp
 ```
 
 ### Build from Source
@@ -63,14 +69,31 @@ npm run dev
 
 ### Integration with MCP Clients
 
-Add the server to your MCP client configuration. For Claude Desktop, add to your `claude_desktop_config.json`:
+#### For npm installation (recommended):
+
+Add to your MCP client configuration. For Claude Desktop, add to your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "random-generator": {
+      "command": "npx",
+      "args": ["-y", "pluggedin-random-number-generator-mcp@latest"]
+    }
+  }
+}
+```
+
+This will always use the latest version from npm without requiring a global installation.
+
+#### For local installation:
 
 ```json
 {
   "mcpServers": {
     "random-generator": {
       "command": "node",
-      "args": ["/path/to/pluggedin-random-number-generator-mcp/dist/index.js"]
+      "args": ["node_modules/pluggedin-random-number-generator-mcp/dist/index.js"]
     }
   }
 }

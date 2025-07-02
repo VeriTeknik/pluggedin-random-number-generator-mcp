@@ -1,0 +1,57 @@
+# Source files
+src/
+*.ts
+!dist/**/*.d.ts
+
+# Development files
+test.js
+tsconfig.json
+.gitignore
+.npmignore
+
+# Docker files
+Dockerfile*
+docker-compose.yml
+.dockerignore
+
+# DXT files
+dxt/
+*.dxt
+scripts/
+
+# Configuration examples
+*.example
+claude_desktop_config.json
+.mcp.json
+.mcp.json.example
+
+# Documentation files (not needed in npm package)
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+CLAUDE.md
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Git files
+.git/
+.github/
+
+# Logs and temp files
+*.log
+logs/
+tmp/
+temp/
+
+# Environment files
+.env
+.env.*
+
+# Node modules (automatically excluded)
+node_modules/
+
+# Build artifacts not needed
+*.tsbuildinfo
