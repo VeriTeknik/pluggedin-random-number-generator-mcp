@@ -32,7 +32,9 @@
     "publish:npm": "npm publish --access public",
     "release:patch": "npm run version:patch && npm run publish:npm && git push --follow-tags",
     "release:minor": "npm run version:minor && npm run publish:npm && git push --follow-tags",
-    "release:major": "npm run version:major && npm run publish:npm && git push --follow-tags"
+    "release:major": "npm run version:major && npm run publish:npm && git push --follow-tags",
+    "smithery:build": "npm run build",
+    "smithery:start": "node dist/index.js"
   },
   "keywords": [
     "mcp",

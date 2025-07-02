@@ -1,0 +1,21 @@
+runtime: "typescript"
+
+# Smithery deployment configuration for Plugged.in Random Number Generator MCP Server
+# This server provides cryptographically secure random number generation via MCP
+
+# Optional metadata for Smithery registry
+metadata:
+  name: "pluggedin-random-number-generator"
+  description: "Cryptographically secure random number generator MCP server with 7 specialized tools"
+  author: "VeriTeknik"
+  version: "1.0.0"
+  repository: "https://github.com/VeriTeknik/pluggedin-random-number-generator-mcp"
+  license: "MIT"
+  tags:
+    - "random"
+    - "cryptography"
+    - "security"
+    - "rng"
+    - "csprng"
+    - "mcp"
+    - "ai"

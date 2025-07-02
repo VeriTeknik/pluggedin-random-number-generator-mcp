@@ -41,6 +41,17 @@ Or install locally in your project:
 npm install pluggedin-random-number-generator-mcp
 ```
 
+### Deploy with Smithery
+
+Deploy this MCP server to the cloud using [Smithery](https://smithery.ai/):
+
+1. Fork this repository
+2. Connect your GitHub account to Smithery
+3. Navigate to the Deployments tab
+4. Click "Deploy"
+
+The server includes a `smithery.yaml` configuration file for easy deployment.
+
 ### Build from Source
 
 ```bash
